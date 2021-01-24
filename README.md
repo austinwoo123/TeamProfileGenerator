@@ -4,14 +4,18 @@
 My task was to build a Node.js command-line application that takes in information about employees on a software engineering team. With that information, it would then generate an HTML webpage that displays summaries for each person using the terminal. 
 ## Table of Contents
 1. [Description](#description)
-2. [Walkthrough Video](#Walkthrough-Video)
-3. [Installation](#Installation)
-4. [Code Snippet](#code-snippet)
-5. [Built with](#built-with)
-6. [Licenses](#licenses)
-7. [Author](#author)
-8. [Questions](#Questions)
-9. [Acknowledgements](#acknowledgements)
+2. [Screenshot](#Screenshot)
+3. [Walkthrough Video](#Walkthrough-Video)
+4. [Installation](#Installation)
+5. [Code Snippet](#code-snippet)
+6. [Built with](#built-with)
+7. [Licenses](#licenses)
+8. [Author](#author)
+9. [Questions](#Questions)
+10. [Acknowledgements](#acknowledgements)
+
+## Screenshot
+![Alt Text](https://raw.githubusercontent.com/austinwoo123/TeamProfileGenerator/main/Assets/screenshot.png)
 
 ## Walkthrough Video
 [Link to Walkthrough Video](https://drive.google.com/file/d/1Gue_Xc4gLCDanfCfIU2TEGIYzsDtuLCh/view?usp=sharing)
