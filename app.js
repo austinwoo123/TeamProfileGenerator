@@ -13,6 +13,8 @@ const render = require("./lib/htmlRenderer");
 const outputArray = []
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+
+
 const managerQuestions = () => {
     inquirer.prompt([
         {
@@ -23,7 +25,7 @@ const managerQuestions = () => {
         {
             type: "input",
             message: "What is the team manager's id?",
-            name: "managerId"
+            name: "managerId",
         },
         {
             type: "input",
@@ -33,13 +35,128 @@ const managerQuestions = () => {
         {
             type: "input",
             message: "What is the team manager's office number?",
-            name: "officeNumber"
-        }
-
-
+            name: "officeNumber",
+        },
 
     ])
+        .then(answers => {
+            const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.officeNumber);
+            outputArray.push(manager);
+            console.log(outputArray);
+            employeeType()
+        })
+
 }
+managerQuestions()
+
+const employeeType = () => {
+    inquirer.prompt([
+        {
+            type: "list",
+            message: "Which type of team member would you like to add?",
+            name: "employeeType",
+            choices: ["Engineer", "Intern", "None"],
+        },
+    ])
+        .then(answer => {
+            if (answer.employeeType === "Intern") {
+                internQuestions();
+            } else if
+                (answer.employeeType === "Engineer") {
+                engineerQuestions();
+            }
+
+            if (answer.employeeType === "None") {
+
+                fs.writeFile(outputPath, render(outputArray), (err) => {
+                    if (err) throw err;
+                    console.log('Your file was sucessfully recorded');
+                });
+            }
+
+        })
+}
+
+
+const engineerQuestions = () => {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "What is the engineer's name?",
+            name: "engineerName",
+        },
+        {
+            type: "input",
+            message: "What is the engineer's id#?",
+            name: "engineerId",
+        },
+        {
+            type: "input",
+            message: "What is the engineer's email address?",
+            name: "engineerEmail",
+
+        },
+        {
+            type: "input",
+            message: "What is the engineer's github username?",
+            name: "engineerGithub",
+        },
+
+    ])
+        .then(answers => {
+            const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
+            outputArray.push(engineer);
+            console.log(outputArray);
+            employeeType()
+        })
+}
+const internQuestions = () => {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "What is your intern's name?",
+            name: "internName",
+        },
+        {
+            type: "input",
+            message: "What is your intern's id?",
+            name: "internId",
+        },
+        {
+            type: "input",
+            message: "What is your intern's email address?",
+            name: "internEmail",
+        },
+        {
+            type: "input",
+            message: "What is your intern's school?",
+            name: "internSchool",
+        },
+    ])
+        .then(answers => {
+            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+            outputArray.push(intern);
+            console.log(outputArray);
+            employeeType()
+
+        })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
